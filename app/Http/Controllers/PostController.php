@@ -31,7 +31,7 @@ class PostController extends Controller
             $post->update($data); 
     
             return redirect()->route('posts.index')->with('success', 'Its successful!');
-    }
+    
             return redirect('/');
         } catch (Exception $e) {
             return redirect('/')->with('error', 'Failed to update post.');
