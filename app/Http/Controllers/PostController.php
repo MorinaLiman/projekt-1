@@ -26,10 +26,12 @@ class PostController extends Controller
         }
 
         try {
-            $post->update([
-                'title' => $request->title,
-                'body'  => $request->body,
-            ]);
+            $data = $request->validated(); 
+
+            $post->update($data); 
+    
+            return redirect()->route('posts.index')->with('success', 'Its successful!');
+    }
             return redirect('/');
         } catch (Exception $e) {
             return redirect('/')->with('error', 'Failed to update post.');
@@ -58,4 +60,4 @@ class PostController extends Controller
             return redirect('/')->with('error', 'Failed to create post.');
         }
     }
-}
+
